@@ -74,10 +74,10 @@
       "id": 8,
       "firstName": "Lawrence",
       "lastName": "n/a",
-      "active": false,
+      "active": true,
       "imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/c/cb/Lawrence_Reunion.jpg/revision/latest/scale-to-width-down/310?cb=20180613182747",
       "gender": "Male",
-      "area": "pariah",
+      "area": "high_plains",
       "authorized": false
     },
     {
@@ -147,7 +147,7 @@
       "active": true,
       "imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/6/6b/Musashi_Akane_No_Mai.jpg/revision/latest/scale-to-width-down/310?cb=20180520131337",
       "gender": "Male",
-      "area": "badlands",
+      "area": "python_pass",
       "authorized": false
     }
   ],

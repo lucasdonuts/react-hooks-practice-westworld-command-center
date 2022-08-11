@@ -44,7 +44,8 @@ function HostInfo({ areas, selectedHostId, updateHost }) {
   // const [value] = useState("some_area");
 
   function handleOptionChange(e, { value }) {
-    
+    updateHost({ ...host, area: value });
+    setCurrentArea( value );
   }
 
   function handleRadioChange() {
