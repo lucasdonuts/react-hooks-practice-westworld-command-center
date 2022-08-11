@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react";
 import Details from "./Details";
 import "../stylesheets/Headquarters.css";
 
-function Headquarters() {
+function Headquarters({ hosts, areas, selectedHostId, onHostClick }) {
   return (
     <Grid celled="internally">
       <Grid.Column width={8}>{/* Something goes here.... */}</Grid.Column>
