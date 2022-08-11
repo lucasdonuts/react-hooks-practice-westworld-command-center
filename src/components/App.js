@@ -23,6 +23,22 @@ function App() {
     setSelectedHostId( host.id )
   }
 
+  const updateHost = (hostUpdated) => {
+    fetch(`http://localhost:3001/hosts/${ hostUpdated.id }`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( hostUpdated )
+    })
+      .then( res => res.json() )
+      .then( updatedHost => setHosts( hosts => hosts.map( host => {
+        if( updatedHost.id === host.id ) {
+          return updatedHost
+        } else {
+          return host
+        }
+      })))
+  }
+
   return (
     <Segment id="app">
       <WestworldMap
@@ -36,6 +52,7 @@ function App() {
         hosts={ hosts }
         selectHost={ selectHost }
         selectedHostId={ selectedHostId }
+        updateHost={ updateHost }
       />
     </Segment>
   );
