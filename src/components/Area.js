@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../stylesheets/Area.css";
+import HostList from './HostList';
 
-function Area() {
+export const titleCase = ( name ) => {
+  return name.split('_').map( word => word.charAt(0).toUpperCase() + word.slice(1) ).join(' ');
+}
+
+function Area({ area, hosts, selectHost, selectedHostId }) {
+  const [ hostsInArea, setHostsInArea ] = useState([ ]);
+
+  const { name, limit, auth_req } = area;
+
+  useEffect( () => {
+    setHostsInArea( hosts.filter( host => host.area === name && host.active ) )
+  }, [ hosts, name ])
+
   return (
     <div
       className="area"
-      id={
-        /* Pass in the area name here to make sure this is styled correctly */ "id"
-      }
+      id={ name }
     >
       <h3 className="labels">
-        {/* Don't just pass in the name from the data...clean that thing up */}
+        { titleCase( name ) }
       </h3>
-      {/* See Checkpoint 1 item 2 in the Readme for a clue as to what goes here */}
+      <HostList
+        hosts={ hostsInArea }
+        selectHost={ selectHost }
+        selectedHostId={ selectedHostId }
+      />
     </div>
   );
 }
