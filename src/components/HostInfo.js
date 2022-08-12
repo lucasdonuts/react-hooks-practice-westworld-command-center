@@ -11,7 +11,14 @@ import {
 import "../stylesheets/HostInfo.css";
 import { titleCase } from './Area';
 
-function HostInfo({ areas, selectedHostId, updateHost }) {
+function HostInfo({
+    hosts,
+    areas,
+    selectedHostId,
+    updateHost,
+    areaPopulations,
+    tallyAreaPopulations
+  }) {
   const [ host, setHost ] = useState({ });
   const [ options, setOptions ] = useState([ ]);
   const [ currentArea, setCurrentArea ] = useState('');
@@ -37,9 +44,20 @@ function HostInfo({ areas, selectedHostId, updateHost }) {
     })
   }
 
+  const areaHasRoom = ( areaToCheck ) => {
+    const destination = areas.find( area => area.name === areaToCheck)
+
+    return !areaPopulations[ destination.name ] || areaPopulations[ destination.name ] <= destination.limit
+  }
+  
   function handleOptionChange(e, { value }) {
-    updateHost({ ...host, area: value });
-    setCurrentArea( value );
+    if( areaHasRoom( value ) ) {
+      updateHost({ ...host, area: value });
+      setCurrentArea( value );
+      tallyAreaPopulations();
+    } else {
+      console.log( `Too many hosts. Cannot add ${ host.name } to ${ titleCase( value ) }` )
+    }
   }
 
   function handleRadioChange() {

@@ -28,7 +28,7 @@ function App() {
     hosts.forEach( host => {
       populations[host.area] = populations[host.area] ? populations[host.area] + 1 : 1
     })
-    setAreaPopulations( populations )
+    setAreaPopulations( () => populations )
   }
   
   const selectHost = ( host ) => {
@@ -65,6 +65,8 @@ function App() {
         selectHost={ selectHost }
         selectedHostId={ selectedHostId }
         updateHost={ updateHost }
+        areaPopulations={ areaPopulations }
+        tallyAreaPopulations={ tallyAreaPopulations }
       />
     </Segment>
   );
