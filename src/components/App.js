@@ -8,17 +8,29 @@ function App() {
   const [ areas, setAreas ] = useState([ ]);
   const [ hosts, setHosts ] = useState([ ]);
   const [ selectedHostId, setSelectedHostId ] = useState();
+  const [ areaPopulations, setAreaPopulations ] = useState({ });
 
   useEffect( () => {
-    fetch( 'http://localhost:3001/hosts' )
-      .then( res => res.json() )
-      .then( setHosts )
 
     fetch( 'http://localhost:3001/areas' )
       .then( res => res.json() )
       .then( setAreas )
+
+    fetch( 'http://localhost:3001/hosts' )
+        .then( res => res.json() )
+        .then( setHosts )
+        .then( () => tallyAreaPopulations( ) )
+
   }, [ ])
 
+  const tallyAreaPopulations = () => {
+    const populations = {}
+    hosts.forEach( host => {
+      populations[host.area] = populations[host.area] ? populations[host.area] + 1 : 1
+    })
+    setAreaPopulations( populations )
+  }
+  
   const selectHost = ( host ) => {
     setSelectedHostId( host.id )
   }
