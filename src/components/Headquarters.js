@@ -34,7 +34,7 @@ function Headquarters({
         />
       </Grid.Column>
       <Grid.Column width={3}>
-        {/* <LogPanel /> */}
+        <LogPanel />
       </Grid.Column>
     </Grid>
   );

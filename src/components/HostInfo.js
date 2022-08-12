@@ -12,7 +12,6 @@ import "../stylesheets/HostInfo.css";
 import { titleCase } from './Area';
 
 function HostInfo({
-    hosts,
     areas,
     selectedHostId,
     updateHost,
